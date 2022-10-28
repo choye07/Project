@@ -24,23 +24,23 @@ public class StudyjvRecordOther extends JFrame implements ActionListener {
     JScrollPane jsp = new JScrollPane(jt);
  
     /*
-     * South ¿µ¿ª¿¡ Ãß°¡ÇÒ Componetµé
+     * South ì˜ì—­ì— ì¶”ê°€í•  Componetë“¤
      */
     JPanel p = new JPanel();
     String[] comboName = { "  ALL  ", "  ID  ", " jvstdt" };
  
     JComboBox combo = new JComboBox(comboName);
     JTextField jtf = new JTextField(20);
-    JButton serach = new JButton("°Ë»ö");
+    JButton serach = new JButton("ê²€ìƒ‰");
  
     StudyjvRecordOtherDAO2 dao = new StudyjvRecordOtherDAO2();
  
     /**
-     * È­¸é±¸¼º ¹× ÀÌº¥Æ®µî·Ï
+     * í™”ë©´êµ¬ì„± ë° ì´ë²¤íŠ¸ë“±ë¡
      */
     public StudyjvRecordOther() {
        
-        super("GUI È¸¿ø°ü¸®ÇÁ·Î±×·¥ - DB¿¬µ¿");
+        super("GUI íšŒì›ê´€ë¦¬í”„ë¡œê·¸ë¨ - DBì—°ë™");
         p.setBounds(0, 22, 615, 46);
         
         JButton back = new JButton("<");
@@ -48,12 +48,12 @@ public class StudyjvRecordOther extends JFrame implements ActionListener {
        back.addActionListener(new ActionListener() {
        			public void actionPerformed(ActionEvent e) {
        				new Studyjv();
-       				setVisible(false); // Ã¢ ¾Èº¸ÀÌ°Ô ÇÏ±â
+       				setVisible(false); // ì°½ ì•ˆë³´ì´ê²Œ í•˜ê¸°
        			}
        		});
                p.add(back);
        
-        // South¿µ¿ª
+        // Southì˜ì—­
         p.setBackground(Color.WHITE);
         p.setLayout(null);
         combo.setBounds(111, 11, 67, 21);
@@ -74,17 +74,17 @@ public class StudyjvRecordOther extends JFrame implements ActionListener {
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         serach.addActionListener(this);
  
-        // ¸ğµç·¹ÄÚµå¸¦ °Ë»öÇÏ¿© DefaultTableModle¿¡ ¿Ã¸®±â
+        // ëª¨ë“ ë ˆì½”ë“œë¥¼ ê²€ìƒ‰í•˜ì—¬ DefaultTableModleì— ì˜¬ë¦¬ê¸°
         dao.userSelectAll(dt);
        
-        //Ã¹¹øÇà ¼±ÅÃ.
+        //ì²«ë²ˆí–‰ ì„ íƒ.
         if (dt.getRowCount() > 0)
             jt.setRowSelectionInterval(0, 0);
  
-    }// »ı¼ºÀÚ³¡
+    }// ìƒì„±ìë
  
     /**
-     * main¸Ş¼Òµå ÀÛ¼º
+     * mainë©”ì†Œë“œ ì‘ì„±
      */
     public static void main(String[] args) {
         new StudyjvRecordOther();
@@ -92,23 +92,23 @@ public class StudyjvRecordOther extends JFrame implements ActionListener {
 
 
     /**
-     * °¡ÀÔ/¼öÁ¤/»èÁ¦/°Ë»ö±â´ÉÀ» ´ã´çÇÏ´Â ¸Ş¼Òµå
+     * ê°€ì…/ìˆ˜ì •/ì‚­ì œ/ê²€ìƒ‰ê¸°ëŠ¥ì„ ë‹´ë‹¹í•˜ëŠ” ë©”ì†Œë“œ
      * */
  
     public void actionPerformed(ActionEvent e) {
- if (e.getSource() == serach) {// °Ë»ö ¹öÆ° Å¬¸¯
-            // JComboBox¿¡ ¼±ÅÃµÈ value °¡Á®¿À±â
+ if (e.getSource() == serach) {// ê²€ìƒ‰ ë²„íŠ¼ í´ë¦­
+            // JComboBoxì— ì„ íƒëœ value ê°€ì ¸ì˜¤ê¸°
             String fieldName = combo.getSelectedItem().toString();
-            System.out.println("ÇÊµå¸í " + fieldName);
+            System.out.println("í•„ë“œëª… " + fieldName);
  
-            if (fieldName.trim().equals("ALL")) {// ÀüÃ¼°Ë»ö
+            if (fieldName.trim().equals("ALL")) {// ì „ì²´ê²€ìƒ‰
                 dao.userSelectAll(dt);
                 if (dt.getRowCount() > 0)
                     jt.setRowSelectionInterval(0, 0);
             } else {
                 if (jtf.getText().trim().equals("")) {
                     jtf.requestFocus();
-                } else {// °Ë»ö¾î¸¦ ÀÔ·ÂÇßÀ»°æ¿ì
+                } else {// ê²€ìƒ‰ì–´ë¥¼ ì…ë ¥í–ˆì„ê²½ìš°
                     dao.getUserSearch(dt, fieldName, jtf.getText());
                     if (dt.getRowCount() > 0)
                         jt.setRowSelectionInterval(0, 0);

@@ -32,7 +32,7 @@ class DatePick2 {
 	public DatePick2(JFrame J_Frame_Parent) {
 		J_Dialog = new JDialog();
 		J_Dialog.setModal(true);
-		String[] Header = { "ÀÏ", "¿ù", "È­", "¼ö", "¸ñ", "±İ", "Åä" };
+		String[] Header = { "ì¼", "ì›”", "í™”", "ìˆ˜", "ëª©", "ê¸ˆ", "í† " };
 		JPanel J_Panel1 = new JPanel(new GridLayout(7, 7));
 		J_Panel1.setPreferredSize(new Dimension(400, 400));
 
@@ -127,7 +127,7 @@ public class StudyStartjcg extends JFrame {
 		J_LToday.setBounds(120, 90, 48, 15);
 		 jcgstdt = new JTextField(20);
 		jcgstdt.setBounds(173, 87, 226, 21);
-		JButton J_Button = new JButton("³¯Â¥ ¼±ÅÃÇÏ±â");
+		JButton J_Button = new JButton("ï¿½ï¿½Â¥ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½");
 		J_Button.setBounds(404, 86, 118, 23);
 		setLocationRelativeTo(null);
 		
@@ -176,24 +176,24 @@ public class StudyStartjcg extends JFrame {
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(jcgstdt.getText().equals("")){
-					JOptionPane.showMessageDialog(null, "³¯Â¥¸¦ °ñ¶óÁÖ¼¼¿ä", "Message", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "ë‚ ì§œë¥¼ ì„ íƒí•´ì£¼ì„¸ìš”", "Message", JOptionPane.ERROR_MESSAGE);
 					} else if (Sname.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "¼­¹öÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä.", "Message", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "ì„œë²„ ì´ë¦„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”", "Message", JOptionPane.ERROR_MESSAGE);
 					} else if (jcgStudy1.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "°øºÎÇÒ ³»¿ë 1À» ÀÔ·ÂÇØÁÖ¼¼¿ä.", "Message", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "ê³µë¶€ ë‚´ìš©1ì„ ì ì–´ì£¼ì„¸ìš”", "Message", JOptionPane.ERROR_MESSAGE);
 					}else if (jcgStudy2.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "°øºÎÇÒ ³»¿ë 2¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.", "Message", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "ê³µë¶€ ë‚´ìš©2ì„ ì ì–´ì£¼ì„¸ìš”", "Message", JOptionPane.ERROR_MESSAGE);
 					}else if (jcgStudy3.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "°øºÎÇÒ ³»¿ë 3À» ÀÔ·ÂÇØÁÖ¼¼¿ä.", "Message", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "ê³µë¶€ ë‚´ìš©3ì„ ì ì–´ì£¼ì„¸ìš”.", "Message", JOptionPane.ERROR_MESSAGE);
 					} else if (jcgstt.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "°øºÎÇÑ ½Ã°£À» ÀÔ·ÂÇØÁÖ¼¼¿ä.", "Message", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "ê³µë¶€í•œ ì‹œê°„ì„ ì ì–´ì£¼ì„¸ìš”", "Message", JOptionPane.ERROR_MESSAGE);
 					} else {
 					StudyStartjcgVo vo = new StudyStartjcgVo(Sname.getText(),jcgstdt.getText(), jcgStudy1.getText(),jcgStudy2.getText(),jcgStudy3.getText(),
 					jcgstt.getText());
 										System.out.println(vo.toString());
 
 										boolean b = cdao.slist(vo);
-										JOptionPane.showMessageDialog(null, "°øºÎ ³»¿ëÀÌ ±â·ÏµÇ¾ú½À´Ï´Ù.", "Message", JOptionPane.INFORMATION_MESSAGE);
+										JOptionPane.showMessageDialog(null, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ÏµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.", "Message", JOptionPane.INFORMATION_MESSAGE);
 										setVisible(false);
 										new Studyjcg();
 									}

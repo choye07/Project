@@ -20,7 +20,7 @@ public class ServerSettingGUI extends JDialog implements ActionListener{
     JPanel ps=new JPanel();
  
     JLabel lable_Id = new JLabel("ID");
-    JLabel lable_SName=new JLabel("ÀÌ¸§");
+    JLabel lable_SName=new JLabel("ì„œë²„ ì´ë¦„");
 
  
  
@@ -30,7 +30,7 @@ public class ServerSettingGUI extends JDialog implements ActionListener{
    
  
     JButton confirm;
-    JButton reset=new JButton("Ãë¼Ò");
+    JButton reset=new JButton("ë¦¬ì…‹");
  
    ServerSetting me;
  
@@ -40,33 +40,33 @@ public class ServerSettingGUI extends JDialog implements ActionListener{
    
  
     public ServerSettingGUI(ServerSetting me, String index){
-        super(me,"´ÙÀÌ¾î·Î±×");
+        super(me,"");
         this.me=me;
-        if(index.equals("°¡ÀÔ")){
+        if(index.equals("ï¿½ï¿½ï¿½ï¿½")){
             confirm=new JButton(index);
         }else{
-            confirm=new JButton("¼öÁ¤"); 
+            confirm=new JButton("ï¿½ï¿½ï¿½ï¿½"); 
             setLocationRelativeTo(null);
-            //text¹Ú½º¿¡ ¼±ÅÃµÈ ·¹ÄÚµåÀÇ Á¤º¸ ³Ö±â
-            int row = me.jt.getSelectedRow();//¼±ÅÃµÈ Çà
+            //textï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½
+            int row = me.jt.getSelectedRow();//ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½
             id.setText( me.jt.getValueAt(row, 0).toString() );
            sname1.setText( me.jt.getValueAt(row, 1).toString() );
            sname2.setText( me.jt.getValueAt(row, 2).toString() );
            
-            //id text¹Ú½º ºñÈ°¼º
+            //id textï¿½Ú½ï¿½ ï¿½ï¿½È°ï¿½ï¿½
             id.setEditable(false);
         }
        
        
-        //LabelÃß°¡ºÎºÐ
+        //Labelï¿½ß°ï¿½ï¿½Îºï¿½
         pw.add(lable_Id);//ID
-        pw.add(lable_SName);//ÀÌ¸§
+        pw.add(lable_SName);//ï¿½Ì¸ï¿½
 
        
         idCkP.add(id,"Center");
 
        
-        //TextField Ãß°¡
+        //TextField ï¿½ß°ï¿½
         pc.add(idCkP);
         pc.add(sname1);
         pc.add(sname2);
@@ -85,50 +85,50 @@ public class ServerSettingGUI extends JDialog implements ActionListener{
  
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
        
-        //ÀÌº¥Æ®µî·Ï
-        confirm.addActionListener(this); //°¡ÀÔ/¼öÁ¤ ÀÌº¥Æ®µî·Ï
-        reset.addActionListener(this); //Ãë¼Ò ÀÌº¥Æ®µî·Ï
+        //ï¿½Ìºï¿½Æ®ï¿½ï¿½ï¿½
+        confirm.addActionListener(this); //ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®ï¿½ï¿½ï¿½
+        reset.addActionListener(this); //ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®ï¿½ï¿½ï¿½
 
        
-    }//»ý¼ºÀÚ³¡
+    }//ï¿½ï¿½ï¿½ï¿½ï¿½Ú³ï¿½
    
     /**
-     * °¡ÀÔ/¼öÁ¤/»èÁ¦ ±â´É¿¡ ´ëÇÑ ºÎºÐ
+     * ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½É¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½
      * */
     @Override
     public void actionPerformed(ActionEvent e) {
-       String btnLabel =e.getActionCommand();//ÀÌº¥Æ®ÁÖÃ¼ ´ëÇÑ Label °¡Á®¿À±â
+       String btnLabel =e.getActionCommand();//ï¿½Ìºï¿½Æ®ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ Label ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
        
-       if(btnLabel.equals("°¡ÀÔ")){
-           if(dao.userListInsert(this) > 0 ){//°¡ÀÔ¼º°ø
-               messageBox(this , id.getText()+"´Ô °¡ÀÔÃàµå¸³´Ï´Ù.");
-               dispose();//JDialog Ã¢´Ý±â
+       if(btnLabel.equals("ï¿½ï¿½ï¿½ï¿½")){
+           if(dao.userListInsert(this) > 0 ){//ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½
+               messageBox(this , id.getText()+"ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½å¸³ï¿½Ï´ï¿½.");
+               dispose();//JDialog Ã¢ï¿½Ý±ï¿½
                
-               dao.userSelectAll(me.dt);//¸ðµç·¹ÄÚµå°¡Á®¿Í¼­ DefaultTableModel¿¡ ¿Ã¸®±â
+               dao.userSelectAll(me.dt);//ï¿½ï¿½ç·¹ï¿½Úµå°¡ï¿½ï¿½ï¿½Í¼ï¿½ DefaultTableModelï¿½ï¿½ ï¿½Ã¸ï¿½ï¿½ï¿½
                
                if(me.dt.getRowCount() > 0)
-                   me.jt.setRowSelectionInterval(0, 0);//Ã¹¹øÂ° Çà ¼±ÅÃ
+                   me.jt.setRowSelectionInterval(0, 0);//Ã¹ï¿½ï¿½Â° ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                
-           }else{//°¡ÀÔ½ÇÆÐ
-               messageBox(this,"°¡ÀÔµÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+           }else{//ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½
+               messageBox(this,"ï¿½ï¿½ï¿½Ôµï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.");
            }
            
        
            
            
            
-       }else if(btnLabel.equals("Ãë¼Ò")){
+       }else if(btnLabel.equals("ï¿½ï¿½ï¿½")){
            dispose();
            
        }else if(btnLabel.equals("IDCheck")){
-           //idÅØ½ºÆ®¹Ú½º¿¡ °ª ¾øÀ¸¸é ¸Þ¼¼Áö Ãâ·Â ÀÖÀ¸¸é DB¿¬µ¿ÇÑ´Ù.
+           //idï¿½Ø½ï¿½Æ®ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ DBï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
            if(id.getText().trim().equals("")){
-               messageBox(this,"ID¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
-               id.requestFocus();//Æ÷Ä¿½ºÀÌµ¿
+               messageBox(this,"IDï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.");
+               id.requestFocus();//ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½Ìµï¿½
            }
                  
-                  id.setText("");//text¹Ú½ºÁö¿ì±â
-                  id.requestFocus();//Ä¿¼­³õ±â
+                  id.setText("");//textï¿½Ú½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                  id.requestFocus();//Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
               }
                
            }
@@ -136,10 +136,10 @@ public class ServerSettingGUI extends JDialog implements ActionListener{
 
    
     /**
-     * ¸Þ½ÃÁö¹Ú½º ¶ç¿öÁÖ´Â ¸Þ¼Òµå ÀÛ¼º
+     * ï¿½Þ½ï¿½ï¿½ï¿½ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Þ¼Òµï¿½ ï¿½Û¼ï¿½
      * */
     public static void messageBox(Object obj , String message){
         JOptionPane.showMessageDialog( (Component)obj , message);
     }
  
-}//Å¬·¡½º³¡
+}//Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½

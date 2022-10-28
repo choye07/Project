@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 public class StudyjvRecordMeDAO {
 
 /**
- * ÇÊ¿äÇÑ º¯¼ö¼±¾ğ
+ * í•„ìš”í•œ ë³€ìˆ˜ì„ ì–¸
  * */
 Connection con;
 Statement st;
@@ -23,26 +23,26 @@ PreparedStatement ps;
 ResultSet rs;
 
 /**
- * ·Îµå ¿¬°áÀ» À§ÇÑ »ı¼ºÀÚ
+ * ë¡œë“œ ì—°ê²°ì„ ìœ„í•œ ìƒì„±ì
  * */
 public StudyjvRecordMeDAO() {
     try {
-        // ·Îµå
+        // ë¡œë“œ
         Class.forName("oracle.jdbc.driver.OracleDriver");
-        // ¿¬°á
+        // ì—°ê²°
         con = DriverManager
                 .getConnection("jdbc:oracle:thin:@localhost:1521/xe",
                         "c##green", "green1234");
 
     } catch (ClassNotFoundException e) {
-        System.out.println(e + "=> ·Îµå fail");
+        System.out.println(e + "=> ë¡œë“œ fail");
     } catch (SQLException e) {
-        System.out.println(e + "=> ¿¬°á fail");
+        System.out.println(e + "=> ì—°ê²° fail");
     }
-}//»ı¼ºÀÚ
+}//ìƒì„±ì
 
 /**
- * DB´İ±â ±â´É ¸Ş¼Òµå
+ * DBë‹«ê¸° ê¸°ëŠ¥ ë©”ì†Œë“œ
  * */
 public void dbClose() {
     try {
@@ -57,14 +57,14 @@ public void dbClose() {
 
 
 /**
- * userlistÀÇ ¸ğµç ·¹ÄÚµå Á¶È¸
+ * userlistì˜ ëª¨ë“  ë ˆì½”ë“œ ì¡°íšŒ
  * */
 public void userSelectAll(DefaultTableModel t_model) {
     try {
         st = con.createStatement();
         rs = st.executeQuery("select * from java  where id = "+"'"+LoginVo.userid.getId()+"'");
 
-        // DefaultTableModel¿¡ ÀÖ´Â ±âÁ¸ µ¥ÀÌÅÍ Áö¿ì±â
+        // DefaultTableModelì— ìˆëŠ” ê¸°ì¡´ ë°ì´í„° ì§€ìš°ê¸°
         for (int i = 0; i < t_model.getRowCount();) {
             t_model.removeRow(0);
         }
@@ -72,7 +72,7 @@ public void userSelectAll(DefaultTableModel t_model) {
         while (rs.next()) {
       	  Object data[] = { rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)};
 
-            t_model.addRow(data); //DefaultTableModel¿¡ ·¹ÄÚµå Ãß°¡
+            t_model.addRow(data); //DefaultTableModelì— ë ˆì½”ë“œ ì¶”ê°€
         }
 
     } catch (SQLException e) {
@@ -87,8 +87,8 @@ public void userSelectAll(DefaultTableModel t_model) {
 
 
 /**
- * °Ë»ö´Ü¾î¿¡ ÇØ´çÇÏ´Â ·¹ÄÚµå °Ë»öÇÏ±â (like¿¬»êÀÚ¸¦ »ç¿ëÇÏ¿© _, %¸¦ »ç¿ëÇÒ¶§´Â PreparedStatemnet¾ÈµÈ´Ù. ¹İµå½Ã
- * Statement°´Ã¼¸¦ ÀÌ¿ëÇÔ)
+ * ê²€ìƒ‰ë‹¨ì–´ì— í•´ë‹¹í•˜ëŠ” ë ˆì½”ë“œ ê²€ìƒ‰í•˜ê¸° (likeì—°ì‚°ìë¥¼ ì‚¬ìš©í•˜ì—¬ _, %ë¥¼ ì‚¬ìš©í• ë•ŒëŠ” PreparedStatemnetì•ˆëœë‹¤. ë°˜ë“œì‹œ
+ * Statementê°ì²´ë¥¼ ì´ìš©í•¨)
  * */
 public void getUserSearch(DefaultTableModel dt, String fieldName,
         String word) {
@@ -102,7 +102,7 @@ public void getUserSearch(DefaultTableModel dt, String fieldName,
         System.out.println(fieldName.trim());
         System.out.println(word.trim());
 
-        // DefaultTableModel¿¡ ÀÖ´Â ±âÁ¸ µ¥ÀÌÅÍ Áö¿ì±â
+        // DefaultTableModelì— ìˆëŠ” ê¸°ì¡´ ë°ì´í„° ì§€ìš°ê¸°
         for (int i = 0; i < dt.getRowCount();) {
             dt.removeRow(0);
         }
@@ -122,4 +122,4 @@ public void getUserSearch(DefaultTableModel dt, String fieldName,
 }//getUserSearch()
 
 
-}// Å¬·¡½º³¡
+}// í´ë˜ìŠ¤ë

@@ -111,7 +111,7 @@ public class StudyRoom extends JFrame {
 	   }
 		 
 public void conn(){
-  // ¿À¶óÅ¬ µå¶óÀÌ¹ö ¼±¾ğ
+  // ì˜¤ë¼í´ ë“œë¼ì´ë²„ ì„ ì–¸
   try {
    Class.forName(driver);
   } catch (ClassNotFoundException e) {
@@ -119,7 +119,7 @@ public void conn(){
   }  
 
   try {
-   // ¿À¶óÅ¬ DB¿¬°á
+   // ì˜¤ë¼í´ DBì—°ê²°
 	  con = DriverManager.getConnection(url, user, password);
 	  stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
   } catch (SQLException ee) {

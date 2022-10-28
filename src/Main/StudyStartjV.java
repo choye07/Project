@@ -7,8 +7,6 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -19,9 +17,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
 
 class DatePick {
 	int DATE_MONTH = Calendar.getInstance().get(Calendar.MONTH);
@@ -34,7 +32,7 @@ class DatePick {
 	public DatePick(JFrame J_Frame_Parent) {
 		J_Dialog = new JDialog();
 		J_Dialog.setModal(true);
-		String[] Header = { "��", "��", "ȭ", "��", "��", "��", "��" };
+		String[] Header = { "일", "월", "화", "수", "목", "금", "토" };
 		JPanel J_Panel1 = new JPanel(new GridLayout(7, 7));
 		J_Panel1.setPreferredSize(new Dimension(400, 400));
 
@@ -64,7 +62,8 @@ class DatePick {
 		JPanel J_Panel2 = new JPanel(new GridLayout(1, 3));
 		JButton Previous_Button = new JButton("<< Previous");
 		Previous_Button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ae) {
+
+	public void actionPerformed(ActionEvent ae) {
 				DATE_MONTH--;
 				Display_Date();
 			}
@@ -110,42 +109,51 @@ class DatePick {
 		return Simple_Date_Format.format(Calendar.getTime());
 	}
 }
-public class StudyStartjV  extends JFrame {
-	private JTextField textField_2;
-	private JTextField tfStudy1;
-	private JTextField tfStudy2;
-	private JTextField tfStudy3;
+
+public class StudyStartjV extends JFrame {
+	private JTextField jvStudy1;
+	private JTextField jvstdt;
+	private JTextField jvstt;
+	private JTextField jvStudy2;
+	private JTextField jvStudy3;
+	private StudyStartjvDao vdao;
+	private JTextField Sname;
+
 
 	public StudyStartjV() {
-		JLabel J_Label = new JLabel("Today : ");
-		J_Label.setBounds(120, 90, 48, 15);
-		final JTextField J_Text_Field = new JTextField(20);
-		J_Text_Field.setBounds(173, 87, 226, 21);
-		JButton J_Button = new JButton("��¥ �����ϱ�");
+		
+		vdao = new StudyStartjvDao();
+		JLabel J_LToday = new JLabel("Today : ");
+		J_LToday.setBounds(120, 90, 48, 15);
+		 jvstdt = new JTextField(20);
+		jvstdt.setBounds(173, 87, 226, 21);
+		JButton J_Button = new JButton("��¥ �����ϱ�");
 		J_Button.setBounds(404, 86, 118, 23);
 		setLocationRelativeTo(null);
-		JPanel J_Panel = new JPanel();
-		J_Panel.setLayout(null);
-		J_Panel.add(J_Label);
-		J_Panel.add(J_Text_Field);
-		J_Panel.add(J_Button);
-		final JFrame J_Frame = new JFrame();
-		J_Frame.getContentPane().add(J_Panel);
 		
-		JLabel J_Label_1 = new JLabel("Study :");
-		J_Label_1.setBounds(120, 139, 48, 18);
-		J_Panel.add(J_Label_1);
+		JPanel jvMainpanel = new JPanel();
+		jvMainpanel.setLayout(null);
+		jvMainpanel.add(J_LToday);
+		jvMainpanel.add(jvstdt);
+		jvMainpanel.add(J_Button);
+	 JFrame J_Frame = new JFrame();
+		getContentPane().add(jvMainpanel);
 		
-		JLabel J_Label_1_2 = new JLabel("StudyTime :");
-		J_Label_1_2.setBounds(92, 224, 76, 15);
-		J_Panel.add(J_Label_1_2);
+		JLabel J_LStudy = new JLabel("Study :");
+		J_LStudy.setBounds(120, 139, 48, 18);
+		jvMainpanel.add(J_LStudy);
 		
-		textField_2 = new JTextField(20);
-		textField_2.setBounds(173, 221, 226, 21);
-		J_Panel.add(textField_2);
+		JLabel J_LStudytime = new JLabel("StudyTime :");
+		J_LStudytime.setBounds(92, 224, 76, 15);
+		jvMainpanel.add(J_LStudytime);
+		
+		jvstt = new JTextField(20);
+		jvstt.setBounds(173, 221, 226, 21);
+		jvMainpanel.add(jvstt);
 		
 		JButton btnSW = new JButton("\uC2A4\uD1B1\uC6CC\uCE58");
-	
+		btnSW.setBounds(404, 138, 118, 104);
+		jvMainpanel.add(btnSW);
 		btnSW.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			String urlLink ="https://vclock.kr/stopwatch/";
@@ -160,57 +168,80 @@ public class StudyStartjV  extends JFrame {
 			
 			}
 		});
-		btnSW.setBounds(404, 138, 118, 104);
-		J_Panel.add(btnSW);
 		
-		JButton btnSHome = new JButton("Ȩ");
-		btnSHome.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new Studyjv();
-				J_Frame.setVisible(false);
-			}
-		});
-		btnSHome.setBounds(186, 310, 92, 29);
-		J_Panel.add(btnSHome);
+		setVisible(true);
+		
 		
 		JButton btnSave = new JButton("\uC800\uC7A5");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		btnSave.setBounds(412, 310, 92, 29);
-		J_Panel.add(btnSave);
+				if(jvstdt.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "날짜를 선택해주세요", "Message", JOptionPane.ERROR_MESSAGE);
+					} else if (Sname.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "서버 이름을 입력해주세요", "Message", JOptionPane.ERROR_MESSAGE);
+					} else if (jvStudy1.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "공부 내용1을 적어주세요.", "Message", JOptionPane.ERROR_MESSAGE);
+					}else if (jvStudy2.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "공부 내용2을 적어주세요", "Message", JOptionPane.ERROR_MESSAGE);
+					}else if (jvStudy3.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "공부 내용3을 적어주세요.", "Message", JOptionPane.ERROR_MESSAGE);
+					} else if (jvstt.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "공부한 시간을 적어주세요.", "Message", JOptionPane.ERROR_MESSAGE);
+					} else {
+					StudyStartjvVo vo = new StudyStartjvVo(Sname.getText(),jvstdt.getText(), jvStudy1.getText(),jvStudy2.getText(),jvStudy3.getText(),
+					jvstt.getText());
+										System.out.println(vo.toString());
+
+										boolean b = vdao.slist(vo);
+										JOptionPane.showMessageDialog(null, "���� ������ ��ϵǾ����ϴ�.", "Message", JOptionPane.INFORMATION_MESSAGE);
+										setVisible(false);
+										new Studyjv();
+									}
+								}
+							});
+		btnSave.setBounds(270, 310, 92, 29);
+		jvMainpanel.add(btnSave);
 		
-		tfStudy1 = new JTextField(20);
-		tfStudy1.setBounds(173, 138, 226, 21);
-		J_Panel.add(tfStudy1);
+		jvStudy1 = new JTextField(20);
+		jvStudy1.setBounds(173, 138, 226, 21);
+		jvMainpanel.add(jvStudy1);
 		
-		tfStudy2 = new JTextField(20);
-		tfStudy2.setBounds(173, 164, 226, 21);
-		J_Panel.add(tfStudy2);
+		jvStudy2 = new JTextField(20);
+		jvStudy2.setBounds(173, 164, 226, 21);
+		jvMainpanel.add(jvStudy2);
 		
-		tfStudy3 = new JTextField(20);
-		tfStudy3.setBounds(173, 190, 226, 21);
-		J_Panel.add(tfStudy3);
+		jvStudy3 = new JTextField(20);
+		jvStudy3.setBounds(173, 190, 226, 21);
+		jvMainpanel.add(jvStudy3);
 		
-		JLabel lblNewLabel_1 = new JLabel(LoginVo.userid.getId());
-		lblNewLabel_1.setBounds(25, 26, 76, 15);
-		J_Panel.add(lblNewLabel_1);
-//		J_Frame.pack();
-		J_Frame.setLocationRelativeTo(null);
-		J_Frame.setVisible(true);
-		J_Frame.setSize(683,400);
+		JLabel lblNewLabel = new JLabel(LoginVo.userid.getId());
+		lblNewLabel.setBounds(25, 26, 76, 15);
+		jvMainpanel.add(lblNewLabel);
+		
+		JLabel lstudyname = new JLabel("\uC815\uCC98\uAE30 \uC2A4\uD130\uB514");
+		lstudyname.setBounds(287, 26, 92, 15);
+		jvMainpanel.add(lstudyname);
+		
+		JLabel J_LServer = new JLabel("Server name : ");
+		J_LServer.setBounds(84, 115, 84, 15);
+		jvMainpanel.add(J_LServer);
+		
+		Sname = new JTextField(20);
+		Sname.setBounds(173, 112, 226, 21);
+		jvMainpanel.add(Sname);
+		
+		setLocationRelativeTo(null);
+		setVisible(true);
+		setSize(683,400);
 		J_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				J_Text_Field.setText(new DatePick(J_Frame).Set_Picked_Date());
+				jvstdt.setText(new DatePick(J_Frame).Set_Picked_Date());
+
 			}
 		});
-
-		
+	
 	}
 	public static void main(String[] args) {
 		new StudyStartjV();
 	}
-
 }

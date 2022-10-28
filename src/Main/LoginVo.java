@@ -1,6 +1,5 @@
 package Main;
 
-
 public class LoginVo {
 	private String id;
 	private String pwd;

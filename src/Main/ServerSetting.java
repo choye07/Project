@@ -20,11 +20,11 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class ServerSetting extends JFrame implements ActionListener {
-  JMenu m = new JMenu("°ü¸®");
-  JMenuItem insert = new JMenuItem("°¡ÀÔ");
+  JMenu m = new JMenu("ê´€ë¦¬");
+  JMenuItem insert = new JMenuItem("ê°€ìž…");
 
-  JMenuItem delete = new JMenuItem("»èÁ¦");
-  JMenuItem quit = new JMenuItem("Á¾·á");
+  JMenuItem delete = new JMenuItem("ì‚­ì œ");
+  JMenuItem quit = new JMenuItem("ì¢…ë£Œ");
   JMenuBar mb = new JMenuBar();
 
   String[] name = { "id", "sname1", "sname2" };
@@ -34,37 +34,37 @@ public class ServerSetting extends JFrame implements ActionListener {
   JScrollPane jsp = new JScrollPane(jt);
 
   /*
-   * South ¿µ¿ª¿¡ Ãß°¡ÇÒ Componetµé
+   * South ì˜ì—­ì— ì¶”ê°€í•  Componetë“¤
    */
   JPanel p = new JPanel();
   String[] comboName = { "  ALL  ", "  ID  ", " Sname1 ", "Sname2" };
 
   JComboBox combo = new JComboBox(comboName);
   JTextField jtf = new JTextField(20);
-  JButton serach = new JButton("°Ë»ö");
+  JButton serach = new JButton("ê²€ìƒ‰");
 
   ServerSettingDao dao = new ServerSettingDao();
   private final JButton btnNewButton = new JButton("\uC11C\uBC84 \uC804\uCCB4 \uBCF4\uAE30");
 
   /**
-   * È­¸é±¸¼º ¹× ÀÌº¥Æ®µî·Ï
+   * í™”ë©´êµ¬ì„± ë° ì´ë²¤íŠ¸ë“±ë¡
    */
   public ServerSetting() {
 	  setLocationRelativeTo(null);
      
-      //¸Þ´º¾ÆÀÌÅÛÀ» ¸Þ´º¿¡ Ãß°¡
+      //ë©”ë‰´ì•„ì´í…œì„ ë©”ë‰´ì— ì¶”ê°€
       m.add(insert);
 
       m.add(delete);
       m.add(quit);
-      //¸Þ´º¸¦ ¸Þ´º¹Ù¿¡ Ãß°¡
+      //ë©”ë‰´ë¥¼ ë©”ë‰´ë°”ì— ì¶”ê°€
       mb.add(m);
      
-      //À©µµ¿ì¿¡ ¸Þ´º¹Ù ¼¼ÆÃ
+      //ìœˆë„ìš°ì— ë©”ë‰´ë°” ì„¸íŒ…
       setJMenuBar(mb);
       p.setBounds(0, 111, 484, 40);
      
-      // South¿µ¿ª
+      // Southì˜ì—­
       p.setBackground(Color.WHITE);
       p.setLayout(null);
       combo.setBounds(51, 11, 81, 21);
@@ -93,7 +93,7 @@ public class ServerSetting extends JFrame implements ActionListener {
       back.addActionListener(new ActionListener() {
       			public void actionPerformed(ActionEvent e) {
       				new StudyRoom();
-      				setVisible(false); // Ã¢ ¾Èº¸ÀÌ°Ô ÇÏ±â
+      				setVisible(false); // ì°½ ì•ˆë³´ì´ê²Œ í•˜ê¸°
       			}
       		});
 
@@ -102,74 +102,74 @@ public class ServerSetting extends JFrame implements ActionListener {
 
       super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-      // ÀÌº¥Æ®µî·Ï
+      // ì´ë²¤íŠ¸ë“±ë¡
       insert.addActionListener(this);
 
       delete.addActionListener(this);
       quit.addActionListener(this);
       serach.addActionListener(this);
 
-      // ¸ðµç·¹ÄÚµå¸¦ °Ë»öÇÏ¿© DefaultTableModle¿¡ ¿Ã¸®±â
+      // ëª¨ë“ ë ˆì½”ë“œë¥¼ ê²€ìƒ‰í•˜ì—¬ DefaultTableModleì— ì˜¬ë¦¬ê¸°
       dao.userSelectAll(dt);
      
-      //Ã¹¹øÇà ¼±ÅÃ.
+      //ì²«ë²ˆí–‰ ì„ íƒ.
       if (dt.getRowCount() > 0)
           jt.setRowSelectionInterval(0, 0);
 
-  }// »ý¼ºÀÚ³¡
+  }// ìƒì„±ìžë
 
   /**
-   * main¸Þ¼Òµå ÀÛ¼º
+   * mainë©”ì†Œë“œ ìž‘ì„±
    */
   public static void main(String[] args) {
       new ServerSetting();
   }
 
   /**
-   * °¡ÀÔ/¼öÁ¤/»èÁ¦/°Ë»ö±â´ÉÀ» ´ã´çÇÏ´Â ¸Þ¼Òµå
+   * ê°€ìž…/ìˆ˜ì •/ì‚­ì œ/ê²€ìƒ‰ê¸°ëŠ¥ì„ ë‹´ë‹¹í•˜ëŠ” ë©”ì†Œë“œ
    * */
 
   public void actionPerformed(ActionEvent e) {
-      if (e.getSource() == insert) {// °¡ÀÔ ¸Þ´º¾ÆÀÌÅÛ Å¬¸¯
-          new ServerSettingGUI(this, "°¡ÀÔ");
+      if (e.getSource() == insert) {// ê°€ìž… ë©”ë‰´ì•„ì´í…œ í´ë¦­
+          new ServerSettingGUI(this, "ê°€ìž…");
 
-      }else if (e.getSource() == delete) {// »èÁ¦ ¸Þ´º¾ÆÀÌÅÛ Å¬¸¯
-          // ÇöÀç JtableÀÇ ¼±ÅÃµÈ Çà°ú ¿­ÀÇ °ªÀ» ¾ò¾î¿Â´Ù.
+      }else if (e.getSource() == delete) {// ì‚­ì œ ë©”ë‰´ì•„ì´í…œ í´ë¦­
+          // í˜„ìž¬ Jtableì˜ ì„ íƒëœ í–‰ê³¼ ì—´ì˜ ê°’ì„ ì–»ì–´ì˜¨ë‹¤.
           int row = jt.getSelectedRow();
-          System.out.println("¼±ÅÃÇà : " + row);
+          System.out.println("ì„ íƒí–‰ : " + row);
 
-          Object obj = jt.getValueAt(row, 0);// Çà ¿­¿¡ ÇØ´çÇÏ´Â value
-          System.out.println("°ª : " + obj);
+          Object obj = jt.getValueAt(row, 0);// í–‰ ì—´ì— í•´ë‹¹í•˜ëŠ” value
+          System.out.println("ê°’ : " + obj);
 
           if (dao.userDelete(obj.toString()) > 0) {
-              ServerSettingGUI.messageBox(this, "·¹ÄÚµå »èÁ¦µÇ¾ú½À´Ï´Ù.");
+              ServerSettingGUI.messageBox(this, "ë ˆì½”ë“œ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.");
              
-              //¸®½ºÆ® °»½Å
+              //ë¦¬ìŠ¤íŠ¸ ê°±ì‹ 
               dao.userSelectAll(dt);
               if (dt.getRowCount() > 0)
                   jt.setRowSelectionInterval(0, 0);
 
           } else {
-              ServerSettingGUI.messageBox(this, "·¹ÄÚµå°¡ »èÁ¦µÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+              ServerSettingGUI.messageBox(this, "ë ˆì½”ë“œê°€ ì‚­ì œë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
           }
 
-      } else if (e.getSource() == quit) {// Á¾·á ¸Þ´º¾ÆÀÌÅÛ Å¬¸¯
+      } else if (e.getSource() == quit) {// ì¢…ë£Œ ë©”ë‰´ì•„ì´í…œ í´ë¦­
           System.exit(0);
 
-      } else if (e.getSource() == serach) {// °Ë»ö ¹öÆ° Å¬¸¯
-          // JComboBox¿¡ ¼±ÅÃµÈ value °¡Á®¿À±â
+      } else if (e.getSource() == serach) {// ê²€ìƒ‰ ë²„íŠ¼ í´ë¦­
+          // JComboBoxì— ì„ íƒëœ value ê°€ì ¸ì˜¤ê¸°
           String fieldName = combo.getSelectedItem().toString();
-          System.out.println("ÇÊµå¸í " + fieldName);
+          System.out.println("í•„ë“œëª… " + fieldName);
 
-          if (fieldName.trim().equals("ALL")) {// ÀüÃ¼°Ë»ö
+          if (fieldName.trim().equals("ALL")) {// ì „ì²´ê²€ìƒ‰
               dao.userSelectAll(dt);
               if (dt.getRowCount() > 0)
                   jt.setRowSelectionInterval(0, 0);
           } else {
               if (jtf.getText().trim().equals("")) {
-                  ServerSettingGUI.messageBox(this, "°Ë»ö´Ü¾î¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä!");
+                  ServerSettingGUI.messageBox(this, "ê²€ìƒ‰ë‹¨ì–´ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”!");
                   jtf.requestFocus();
-              } else {// °Ë»ö¾î¸¦ ÀÔ·ÂÇßÀ»°æ¿ì
+              } else {// ê²€ìƒ‰ì–´ë¥¼ ìž…ë ¥í–ˆì„ê²½ìš°
                   dao.getUserSearch(dt, fieldName, jtf.getText());
                   if (dt.getRowCount() > 0)
                       jt.setRowSelectionInterval(0, 0);

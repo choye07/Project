@@ -10,8 +10,8 @@ public class StudyStartjcgVo {
 	String jcgstt;
 
 	public String toString() {
-		return "Vo [id=" + LoginVo.userid.getId() + ", sname=" + Sname + ", jvstdt=" + jcgstdt+", jcgStudy1=" +  jcgStudy1 + ", jcgStudy2="
-				+ jcgStudy2 + ", jcgStudy3=" + jcgStudy3  + ", jvstt=" + jcgstt + "]";
+		return "Vo [id=" + LoginVo.userid.getId() + ", sname=" + Sname + ", jcgtdt=" + jcgstdt+", jcgStudy1=" +  jcgStudy1 + ", jcgStudy2="
+				+ jcgStudy2 + ", jcgStudy3=" + jcgStudy3  + ", jcgstt=" + jcgstt + "]";
 	}
 
 	public StudyStartjcgVo(String Sname, String jcgstdt,String jcgStudy1, String jcgStudy2, String jcgStudy3, String jcgstt) {

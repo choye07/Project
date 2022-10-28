@@ -54,9 +54,9 @@ public class MainHome extends JFrame implements ActionListener {
 		bLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (id.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "id를 입력해주세요.", "Message", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Id를 입력해주세요.", "Message", JOptionPane.ERROR_MESSAGE);
 				} else if (pwd.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "password를 입력해주세요.", "Message", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Password를 입력해주세요.", "Message", JOptionPane.ERROR_MESSAGE);
 				} else {
 					LoginVo vo = new LoginVo(id.getText(), pwd.getText());
 					System.out.println(vo.toString());
