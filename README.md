@@ -1,4 +1,4 @@
-# DATE(Day by day training)
+# 데이트(Day by day training)
 
 ## 0.개요
 ### 소개
